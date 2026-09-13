@@ -70,6 +70,11 @@ on:
         required: false
         type: boolean
         default: false
+      bond_camera:
+        description: 'Bake Daria Bond II stock camera (priv-app + BST libs + allowlist)'
+        required: false
+        type: boolean
+        default: true
       compress_output:
         description: 'Compression for output GSI artifact'
         required: true
@@ -137,6 +142,7 @@ jobs:
           REMOVE_FONTS: ${{ inputs.remove_fonts }}
           REMOVE_LIVE_WALLPAPERS: ${{ inputs.remove_live_wallpapers }}
           REMOVE_PIXEL_THEMES: ${{ inputs.remove_pixel_themes }}
+          BOND_CAMERA: ${{ inputs.bond_camera }}
           COMPRESS_OUTPUT: ${{ inputs.compress_output }}
         run: |
           ./scripts/build.sh

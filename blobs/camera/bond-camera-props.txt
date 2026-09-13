@@ -1,0 +1,8 @@
+# bond-camera v1 by neoncube (Daria Bond II stock camera, dump-verified)
+# Source OTA: DariaOS-7.0-20260819-RELEASE-hormoz-V7.1.2.5.BOND2
+ro.odm.camera=1
+ro.vendor.mtk_camera_app_version=3
+ro.vendor.mtk_cam_security_support=1
+ro.com.google.lens.oem_camera_package=com.mediatek.camera
+ro.odm.camera.rear.resolution=50M
+ro.odm.camera.front.resolution=50M

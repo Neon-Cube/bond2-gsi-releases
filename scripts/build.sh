@@ -61,6 +61,7 @@ if [ "$EUID" -ne 0 ]; then
          REMOVE_FONTS="${REMOVE_FONTS:-false}" \
          REMOVE_LIVE_WALLPAPERS="${REMOVE_LIVE_WALLPAPERS:-false}" \
          REMOVE_PIXEL_THEMES="${REMOVE_PIXEL_THEMES:-false}" \
+         BOND_CAMERA="${BOND_CAMERA:-false}" \
          COMPRESS_OUTPUT="$COMPRESS_OUTPUT" \
          bash "$0" "$@"
 fi
@@ -140,6 +141,9 @@ shopt -u nocasematch
 TAGS=""
 if [ "$REMOVE_VNDK" = "true" ]; then
     TAGS="${TAGS}-VNDK"
+fi
+if [ "${BOND_CAMERA:-false}" = "true" ]; then
+    TAGS="${TAGS}-BOND"
 fi
 if [ "$DEBLOAT" = "true" ]; then
     TAGS="${TAGS}-DEBLOATED"
@@ -255,6 +259,13 @@ if [ "$DEBLOAT" = "true" ]; then
     if [ "${REMOVE_FONTS:-false}" = "true" ]; then echo "  - Non-essential Fonts"; fi
     if [ "${REMOVE_LIVE_WALLPAPERS:-false}" = "true" ]; then echo "  - Live Wallpapers"; fi
     if [ "${REMOVE_PIXEL_THEMES:-false}" = "true" ]; then echo "  - Pixel Theme Overlays"; fi
+fi
+
+# 5.5. Bake Daria Bond II stock camera (optional, immutable default on)
+if [ "${BOND_CAMERA:-false}" = "true" ]; then
+    log_header "Bake Daria stock camera"
+    run_cmd bash "$SCRIPT_DIR/bond-camera.sh" "$SYS_DIR"
+    log_step_success "Camera baked"
 fi
 
 # 6. Build GSI image

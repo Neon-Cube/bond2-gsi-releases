@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Daria Bond II stock camera port by neoncube.
+     Stock ships NO allowlist for com.mediatek.camera (verified dump-wide).
+     Covers privileged perms from aapt badging of PriCamera.apk 14.1.231101,
+     incl. SYSTEM_CAMERA so logical cameras 4/5 stay visible. -->
+<permissions>
+    <privapp-permissions package="com.mediatek.camera">
+        <permission name="android.permission.SYSTEM_CAMERA"/>
+        <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
+        <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+        <permission name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+        <permission name="android.permission.INTERNAL_SYSTEM_WINDOW"/>
+        <permission name="android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS"/>
+        <permission name="android.permission.SET_ANIMATION_SCALE"/>
+        <permission name="android.permission.ACCESS_MTK_MMHW"/>
+        <permission name="mediatek.permission.ACCESS_MTK_MMHW"/>
+    </privapp-permissions>
+</permissions>
