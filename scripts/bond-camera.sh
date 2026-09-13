@@ -20,6 +20,12 @@ for f in "$APK_SRC" "$PERM_SRC" "$SYSCTL_SRC" "$PROPS_SRC"; do
         exit 1
     fi
 done
+# Guard against Git LFS pointer files being baked instead of real blobs
+APK_SIZE=$(stat -c%s "$APK_SRC")
+if [ "$APK_SIZE" -lt 1000000 ]; then
+    echo "[ERROR] $APK_SRC is ${APK_SIZE}B (expect ~12MB). LFS blobs not pulled? Enable lfs:true on checkout." >&2
+    exit 1
+fi
 if [ ! -d "$LIBS_SRC" ]; then
     echo "[ERROR] missing libs dir: $LIBS_SRC" >&2
     exit 1
